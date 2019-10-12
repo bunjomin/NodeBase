@@ -1,0 +1,17 @@
+{
+  "name": "nodebase",
+  "version": "0.0.1",
+  "description": "A simple, lightweight persistent data store",
+  "main": "dist/bundle.js",
+  "scripts": {
+    "lint": "eslint",
+    "build": "rollup src/main.js -o dist/bundle.js -f cjs",
+    "start": "node dist/bundle.js"
+  },
+  "author": "Benjamin Harrington",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "rollup": "^1.23.1"
+  }
+}
