@@ -1,6 +1,6 @@
 {
   "name": "nodebase",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple, lightweight persistent data store",
   "main": "dist/bundle.js",
   "scripts": {
