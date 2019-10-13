@@ -2,14 +2,27 @@
 
 This is very much a WIP. Below is an outline of how I imagine this library being used.
 
-## Example
+## Instantiating a Base
 ```
-(async () => {
   const path = require('path'),
-    projectDir = path.resolve(__dirname);
-    // Require and pass in a working directory for the data
-    nodeBase = require('nodebase')(projectDir),
-    // Define the properties your data will contain
+  /*
+   * Figure out where NodeBase's data directory
+   * will be created
+   */
+    projectDir = path.resolve(__dirname),
+    // Require the library
+    nodeBase = require('nodebase'),
+    // Construct a base
+    base = new nodeBase(projectDir);
+```
+
+That's it! Now we have a base in which we can create many stores. The contents of this base will live at the `data` directory within `projectDir`.
+
+If there's already content in that directory, we will try to instantiate NodeBase on top of that data.
+
+## Schema and Stores
+```
+  // Define the properties your data will contain
     formSchema = [
       {
         label: "first",
@@ -31,8 +44,13 @@ This is very much a WIP. Below is an outline of how I imagine this library being
       }
     ],
     // Instantiate a new data store
-    Form = new nodeBase('forms', formSchema);
+    Form = new base.store('forms', formSchema);
+```
 
+Now we've instantiated a `store` called `forms` that contains values for `first`, `last`, and `email`. 
+
+## Adding and Getting Rows
+```
   // Add rows either as a single Object or an Array of Objects
   // Returns an Array of fields and identifiers
   const initialData = await Form.add([
@@ -47,9 +65,9 @@ This is very much a WIP. Below is an outline of how I imagine this library being
       email: 'bsimpson@example.com'
     }
   ]);
+
   console.log(initialData); // Output: Array [{ identifier, fields }, { identifier, fields }];
 
   const retrieveData = await Form.getOne({ first: "Test" });
   console.log(retrieveData); // Output: Object { identifier, fields }
-})();
 ```
