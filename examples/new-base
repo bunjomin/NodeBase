@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+const nodeBase = require('../dist/bundle.js'),
+  path = require('path'),
+  basedir = path.resolve(__dirname, './base'),
+  base = new nodeBase(basedir);
+
+console.log('Done!', base);
