@@ -9,14 +9,14 @@ This is very much a WIP. Below is an outline of how I imagine this library being
    * Figure out where NodeBase's data directory
    * will be created
    */
-    projectDir = path.resolve(__dirname),
+    baseDir = path.resolve(__dirname),
     // Require the library
     nodeBase = require('nodebase'),
     // Construct a base
-    base = new nodeBase(projectDir);
+    base = new nodeBase(baseDir);
 ```
 
-That's it! Now we have a base in which we can create many stores. The contents of this base will live at the `data` directory within `projectDir`.
+That's it! Now we have a Base in which we can create many stores. The contents of this base will live at the `.nb_data` directory within `baseDir`.
 
 If there's already content in that directory, we will try to instantiate NodeBase on top of that data.
 
@@ -26,19 +26,19 @@ If there's already content in that directory, we will try to instantiate NodeBas
     formSchema = [
       {
         label: "first",
-        type: String,
+        type: "String",
         length: 16,
         required: true
       },
       {
         label: "last",
-        type: String,
+        type: "String",
         length: 24,
         required: true
       }
       {
         label: "email",
-        type: String,
+        type: "String",
         length: 32,
         required: true
       }
