@@ -21,7 +21,7 @@ export default class Base {
 
     // Check if any stores exist within the base, if so
     // we're resuming a base rather than creating a new one
-    const stores = fs.readdirSync(baseDir, { withFileTypes: true })
+    const stores = fs.readdirSync(nbDir, { withFileTypes: true })
       .filter(dirent => dirent.isDirectory())
       .map(dirent => dirent.name);
 

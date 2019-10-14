@@ -3,6 +3,28 @@
 const nodeBase = require('../dist/bundle.js'),
   path = require('path'),
   basedir = path.resolve(__dirname),
-  base = new nodeBase(basedir);
+  base = new nodeBase(basedir),
+  store = base.store,
+  formSchema = [
+    {
+      label: 'first',
+      type: 'String',
+      length: 16,
+      required: true
+    },
+    {
+      label: 'last',
+      type: 'String',
+      length: 24,
+      required: true
+    },
+    {
+      label: 'email',
+      type: 'String',
+      length: 32,
+      required: true
+    }
+  ],
+  newStore = store.create({ name: 'forms', schema: formSchema });
 
-console.log('Done!', base);
+console.log('Done!', newStore);

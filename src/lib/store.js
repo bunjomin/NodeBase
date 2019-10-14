@@ -1,9 +1,14 @@
 /**
- * Store class, controls read/write for stores,
+ * Store
+ * Controls read/write for stores,
  * belongs to a Base
  */
 
-const __write = function () {
+const fs = require('fs-extra'),
+  globby = require('globby');
+
+const __write = function ({ base, name, schema }) {
+  console.log(base, name, schema);
   return;
 };
 
@@ -13,8 +18,8 @@ export default class Store {
     this.dir = base.dir;
   }
 
-  create () {
-    __write();
+  create ({ name, schema }) {
+    __write({ base: this.base, name, schema });
   }
 
   read () {
