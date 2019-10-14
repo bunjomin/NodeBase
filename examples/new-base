@@ -2,7 +2,7 @@
 
 const nodeBase = require('../dist/bundle.js'),
   path = require('path'),
-  basedir = path.resolve(__dirname, './base'),
+  basedir = path.resolve(__dirname),
   base = new nodeBase(basedir);
 
 console.log('Done!', base);
