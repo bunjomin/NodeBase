@@ -14,10 +14,10 @@
     "eslint": "^6.5.1",
     "rollup": "^1.23.1",
     "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0"
-  },
-  "dependencies": {
+    "rollup-plugin-node-resolve": "^5.2.0",
     "fs-extra": "^8.1.0",
     "globby": "^10.0.1"
+  },
+  "dependencies": {
   }
 }
