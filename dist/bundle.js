@@ -1,9 +1,18 @@
 'use strict';
 
 /**
- * Store class, controls read/write for stores,
+ * Store
+ * Controls read/write for stores,
  * belongs to a Base
  */
+
+const fs = require('fs-extra'),
+  globby = require('globby');
+
+const __write = function ({ base, name, schema }) {
+  console.log(base, name, schema);
+  return;
+};
 
 class Store {
   constructor (base) {
@@ -11,7 +20,8 @@ class Store {
     this.dir = base.dir;
   }
 
-  create () {
+  create ({ name, schema }) {
+    __write({ base: this.base, name, schema });
   }
 
   read () {
@@ -27,7 +37,7 @@ class Store {
   }
 }
 
-const fs = require('fs-extra'),
+const fs$1 = require('fs-extra'),
   path = require('path');
 
 /**
@@ -39,7 +49,7 @@ class Base {
     const nbDir = path.resolve(baseDir, '.nb_data');
 
     try {
-      fs.ensureDirSync(nbDir);
+      fs$1.ensureDirSync(nbDir);
     } catch (err) {
       console.log(err);
     }
@@ -48,7 +58,7 @@ class Base {
 
     // Check if any stores exist within the base, if so
     // we're resuming a base rather than creating a new one
-    const stores = fs.readdirSync(baseDir, { withFileTypes: true })
+    const stores = fs$1.readdirSync(nbDir, { withFileTypes: true })
       .filter(dirent => dirent.isDirectory())
       .map(dirent => dirent.name);
 
