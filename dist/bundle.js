@@ -1,31 +1,64 @@
 'use strict';
 
-const fs = require('../node_modules/fs-extra/lib/index.js');
-
 /**
- * Our primary function, used to instantiate a base on a directory
- * @param {String} basedir The resolved absolute path to our base dir
+ * Store class, controls read/write for stores,
+ * belongs to a Base
  */
-const __base = function base (basedir) {
-  try {
-    fs.ensureDirSync(basedir);
-  } catch (err) {
-    console.log(err);
+
+class Store {
+  constructor (base) {
+    this.base = base;
+    this.dir = base.dir;
   }
 
-  this.dir = basedir;
+  create () {
+  }
 
-  // Check if any stores exist within the base, if so
-  // we're resuming a base rather than creating a new one
-  const stores = fs.readdirSync(basedir, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory())
-    .map(dirent => dirent.name);
+  read () {
+    // R
+  }
 
-  if (!stores.length) console.log('New base instantiated');
+  update () {
+    // U
+  }
 
-  else console.log(stores);
+  delete () {
+    // D
+  }
+}
 
-  return this;
-};
+const fs = require('fs-extra'),
+  path = require('path');
 
-module.exports = __base;
+/**
+ * Base class, used to instantiate a base on a directory
+ * @param {String} baseDir The resolved absolute path to our base dir
+ */
+class Base {
+  constructor (baseDir) {
+    const nbDir = path.resolve(baseDir, '.nb_data');
+
+    try {
+      fs.ensureDirSync(nbDir);
+    } catch (err) {
+      console.log(err);
+    }
+
+    this.dir = nbDir;
+
+    // Check if any stores exist within the base, if so
+    // we're resuming a base rather than creating a new one
+    const stores = fs.readdirSync(baseDir, { withFileTypes: true })
+      .filter(dirent => dirent.isDirectory())
+      .map(dirent => dirent.name);
+
+    if (!stores.length) {
+      this.stores = stores;
+      this.store = new Store(this);
+    }
+
+    else console.log(stores);
+  }
+}
+
+module.exports = Base;
