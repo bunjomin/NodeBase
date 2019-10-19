@@ -3,4 +3,5 @@
 This is very much a WIP.
 
 ## Examples
-Check out the [examples](/examples) to see how this library can be used.
+We maintain a set of examples for testing functionality in the `examples` directory of the project.
+- [Creating a new Base, Store, and adding an entry to the Store](examples/new-base.js)
