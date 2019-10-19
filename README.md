@@ -26,19 +26,19 @@ If there's already content in that directory, we will try to instantiate NodeBas
     formSchema = [
       {
         label: "first",
-        type: "String",
+        type: String,
         length: 16,
         required: true
       },
       {
         label: "last",
-        type: "String",
+        type: String,
         length: 24,
         required: true
       }
       {
         label: "email",
-        type: "String",
+        type: String,
         length: 32,
         required: true
       }
