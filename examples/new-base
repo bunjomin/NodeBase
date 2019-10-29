@@ -26,7 +26,10 @@
       }
     ],
     newStore = store.create({ name: 'forms', schemaConfig: formSchema }),
-    added = await newStore.add([{ first: 'Test', last: 'Jackson', email: 'tjackson@example.com' }]);
+    [ testJackson ] = await newStore.add([{ first: 'Test', last: 'Jackson', email: 'tjackson@example.com' }]);
 
-  console.log('Done!', newStore, added);
+  console.log('Created & added!', newStore.data, testJackson);
+  console.log('Removing!');
+  await newStore.remove([ testJackson ]);
+  console.log('Removed!', newStore.data);
 })();
